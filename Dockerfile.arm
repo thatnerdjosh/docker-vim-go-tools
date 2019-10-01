@@ -1,12 +1,11 @@
 FROM golang:latest
 
-MAINTAINER Josh Santos <josh@omnidapps.com>
-
+LABEL maintainer="Josh Santos <josh@omnidapps.com>"
 ENV GOPATH /home/developer/workspace
 ENV GOROOT /usr/local/go
-ENV GOBIN $GOROOT/bin
-ENV PATH $PATH:$GOBIN:$GOPATH/bin
+ENV PATH $PATH:$GOROOT/bin:$GOPATH/bin
 
+# NOTE: Tools below based on jare/go-tools, will adjust and slim down in future
 RUN mkdir -p /home/developer/workspace/bin               && \
     GO111MODULE=on go get -buildmode=exe -ldflags '-s -w'   \
       golang.org/x/lint/golint                              \
