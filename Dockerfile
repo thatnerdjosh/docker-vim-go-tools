@@ -3,7 +3,8 @@ FROM golang:latest
 LABEL maintainer="Josh Santos <josh@omnidapps.com>"
 ENV GOPATH /home/developer/workspace
 ENV GOROOT /usr/local/go
-ENV PATH $PATH:$GOROOT/bin:$GOPATH/bin
+ENV GOBIN  $GOROOT/bin
+ENV PATH $PATH:$GOBIN:$GOPATH/bin
 
 # NOTE: tools below are based on jare/go-tools, will slim down in future
 RUN mkdir -p /home/developer/workspace/bin                  && \
@@ -33,6 +34,8 @@ RUN mkdir -p /home/developer/workspace/bin                  && \
       golang.org/x/tools/refactor/rename                       \
       golang.org/x/tools/refactor/satisfy                      \
       golang.org/x/tools/gopls@latest                          \
+      github.com/davidrjenni/reftools/cmd/fillstruct           \
+      github.com/fatih/gomodifytags                            \
       github.com/rogpeppe/godef                                \
       github.com/tools/godep                                   \
       github.com/nsf/gocode                                    \
